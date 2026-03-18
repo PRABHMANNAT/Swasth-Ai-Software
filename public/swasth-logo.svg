@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Black background -->
+  <rect width="512" height="512" fill="#000000"/>
+  
+  <!-- Octagon/shutter outer shape -->
+  <polygon
+    points="180,60 332,60 452,180 452,332 332,452 180,452 60,332 60,180"
+    fill="#ffffff"
+  />
+  
+  <!-- Shutter blade 1 (top-left arm) -->
+  <ellipse cx="138" cy="145" rx="38" ry="16" transform="rotate(-45 138 145)" fill="#000"/>
+  <!-- Shutter blade 2 (top-right arm) -->
+  <ellipse cx="374" cy="145" rx="38" ry="16" transform="rotate(45 374 145)" fill="#000"/>
+  <!-- Shutter blade 3 (bottom-left arm) -->
+  <ellipse cx="138" cy="367" rx="38" ry="16" transform="rotate(45 138 367)" fill="#000"/>
+  <!-- Shutter blade 4 (bottom-right arm) -->
+  <ellipse cx="374" cy="367" rx="38" ry="16" transform="rotate(-45 374 367)" fill="#000"/>
+
+  <!-- Inner gap cuts between blades -->
+  <path d="M200,140 C230,170 200,200 170,200 C155,200 148,188 158,173 Z" fill="#000"/>
+  <path d="M312,140 C282,170 312,200 342,200 C357,200 364,188 354,173 Z" fill="#000"/>
+  <path d="M200,372 C230,342 200,312 170,312 C155,312 148,324 158,339 Z" fill="#000"/>
+  <path d="M312,372 C282,342 312,312 342,312 C357,312 364,324 354,339 Z" fill="#000"/>
+
+  <!-- Central circle -->
+  <circle cx="256" cy="256" r="80" fill="#ffffff"/>
+  <!-- Black inner ring -->
+  <circle cx="256" cy="256" r="68" fill="#000000"/>
+
+  <!-- White cross / plus -->
+  <rect x="236" y="204" width="40" height="104" rx="8" fill="#ffffff"/>
+  <rect x="204" y="236" width="104" height="40" rx="8" fill="#ffffff"/>
+
+  <!-- "Swasth" text -->
+  <text
+    x="256"
+    y="490"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-weight="800"
+    font-size="56"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="-1"
+  >Swasth</text>
+</svg>
