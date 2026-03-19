@@ -48,20 +48,32 @@ const ArchitectureSection = () => {
 
   return (
     <section className="arch-section" id="architecture">
-      {/* Gemini scroll container */}
-      <div className="arch-gemini-scroll" ref={scrollRef}>
-        <GoogleGeminiEffect pathLengths={[p1, p2, p3, p4, p5]} />
+      {/* Gemini scroll container — tall div that drives the animation */}
+      <div
+        ref={scrollRef}
+        style={{
+          height: "400vh",
+          position: "relative",
+          overflow: "clip",
+          background: "#000",
+        }}
+      >
+        <GoogleGeminiEffect
+          pathLengths={[p1, p2, p3, p4, p5]}
+          title="Enterprise-grade infrastructure."
+          description="Scroll to reveal the system architecture →"
+        />
       </div>
 
-      {/* Content overlay */}
-      <div className="arch-content-overlay">
+      {/* Architecture content — below the animation */}
+      <div className="arch-content-below">
         <div className="arch-container">
           {/* Tag */}
           <span className="arch-tag">Architecture</span>
 
           {/* Headline */}
           <h2 className="arch-headline">
-            Enterprise-grade infrastructure.{" "}
+            Three tiers.{" "}
             <span className="arch-headline-accent">Built for scale.</span>
           </h2>
 
