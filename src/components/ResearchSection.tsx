@@ -47,20 +47,31 @@ const researchItems: ResearchItem[] = [
 
 function ResearchCard({ item }: { item: ResearchItem }) {
   const [hovered, setHovered] = useState(false);
+  const Tag = item.link ? "a" : "article";
+  const interactiveProps = item.link
+    ? {
+        href: item.link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {};
 
   return (
-    <article
+    <Tag
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => item.link && window.open(item.link, "_blank")}
-      className="cursor-default rounded-[22px] border p-6 transition-all duration-300"
+      className={`rounded-[22px] border p-6 transition-all duration-300 ${
+        item.link ? "cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/20" : "cursor-default"
+      }`}
       style={{
         background: hovered ? "rgba(255,255,255,0.045)" : "rgba(255,255,255,0.022)",
         borderColor: hovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.06)",
         backdropFilter: "blur(18px)",
         WebkitBackdropFilter: "blur(18px)",
         transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        textDecoration: "none",
       }}
+      {...interactiveProps}
     >
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-white/65">
@@ -77,18 +88,12 @@ function ResearchCard({ item }: { item: ResearchItem }) {
         {item.description}
       </p>
       {item.link && (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/72"
-          onClick={(event) => event.stopPropagation()}
-        >
+        <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/72">
           Read more
           <span aria-hidden="true">-&gt;</span>
-        </a>
+        </span>
       )}
-    </article>
+    </Tag>
   );
 }
 

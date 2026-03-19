@@ -1,4 +1,5 @@
 import React from "react";
+import heroPoster from "../assets/hero.png";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "secondary" | "ghost";
@@ -160,18 +161,59 @@ const Navigation = React.memo(() => {
 Navigation.displayName = "Navigation";
 
 const Hero = React.memo(() => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = React.useState(false);
+  const [videoFailed, setVideoFailed] = React.useState(false);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    const canPlayMp4 = video.canPlayType("video/mp4");
+    if (!canPlayMp4) {
+      setVideoFailed(true);
+      return;
+    }
+
+    const playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(() => {
+        setVideoFailed(true);
+      });
+    }
+  }, []);
+
   return (
     <section
       className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-24 text-white md:px-10 lg:px-16"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
+      <img
+        src={heroPoster}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
+        poster={heroPoster}
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
+        style={{
+          opacity: videoReady && !videoFailed ? 1 : 0,
+          transition: "opacity 320ms ease",
+        }}
+        onLoadedData={() => setVideoReady(true)}
+        onCanPlay={() => setVideoReady(true)}
+        onError={() => setVideoFailed(true)}
       >
         <source src="/hero-background.mp4" type="video/mp4" />
       </video>
