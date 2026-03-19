@@ -1,4 +1,4 @@
-const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/chatgptkedalal@gmail.com"
+const WAITLIST_ENDPOINT = "/api/waitlist"
 
 interface WaitlistPayload {
   email: string
@@ -20,10 +20,6 @@ export async function submitWaitlistSignup({ email, source }: WaitlistPayload) {
     body: JSON.stringify({
       email,
       source,
-      _subject: `New Swasth AI waitlist signup (${source})`,
-      _replyto: email,
-      _captcha: "false",
-      _template: "table",
       submittedAt: new Date().toISOString(),
       page: typeof window !== "undefined" ? window.location.href : "unknown",
     }),
